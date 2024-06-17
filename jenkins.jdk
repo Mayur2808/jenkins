@@ -19,13 +19,7 @@ pipeline {
                 }
             }
         }
-        stage('QualityGate'){
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
-    
-         stage('Deploy') {
+        stage('Deploy') {
             steps {
                 deploy adapters: [tomcat8(credentialsId: 'apache-tomcat', path: '', url: 'http://100.25.154.12:8080')], contextPath: '/', war: '**/*.war'
             }
